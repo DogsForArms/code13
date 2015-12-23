@@ -65,12 +65,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return data.count
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        UIAlertView(title: "Yay!", message: "You succeeded in tapping cell \(indexPath.row).  Good job.", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "Alright").show()
+    }
+    
     @IBAction func addThingsAction(sender: AnyObject) {
         data.removeAll()
         tableView.reloadData()
         
         (1..<80).forEach { (value) -> () in
-            let randomSleep = Double.random(0, 1.3) + 3
+            let startRandom = Double.random(1, 3)
+            let endRandom = startRandom + Double.random(0, 2)
+            
+            let randomSleep = Double.random(startRandom, endRandom)
             
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     NSThread.sleepForTimeInterval(randomSleep)

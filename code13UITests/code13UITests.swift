@@ -10,9 +10,10 @@ import XCTest
 
 class code13UITests: XCTestCase {
     
+    
+    
     let app = XCUIApplication()
     
-    //test
     func cellContainingInteger( value: Int) -> XCUIElement
     {
         return app.cells.containingPredicate(NSPredicate(format: "label == 'cell \(value)'")).element
@@ -36,7 +37,24 @@ class code13UITests: XCTestCase {
         super.tearDown()
     }
     
-    func testRandomAdd(){
+    func testRandomAddBroken()
+    {
+        let addThingsRandomlyButton = app.buttons["addThingsRandomlyButton"]
+        addThingsRandomlyButton.tap()
+        
+        let firstCell = cellForIndex(0)
+        
+        expectationForPredicate(NSPredicate(block: { (observedObj, _: [String : AnyObject]?) -> Bool in
+            return (observedObj as! XCUIElement).exists
+        }), evaluatedWithObject: firstCell, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
+    
+        firstCell.tap() //should fail! code13
+        
+    }
+    
+    func testRandomAddFixed()
+    {
         let addThingsRandomlyButton = app.buttons["addThingsRandomlyButton"]
         addThingsRandomlyButton.tap()
         
@@ -47,9 +65,9 @@ class code13UITests: XCTestCase {
         }), evaluatedWithObject: firstCell, handler: nil)
         waitForExpectationsWithTimeout(10, handler: nil)
         
+        waitForAppToSettle(7) //7 is a generous amount of time to wait.
         
-        firstCell.tap()
-        
+        firstCell.tap() //works!
     }
     
     func testExample() {
