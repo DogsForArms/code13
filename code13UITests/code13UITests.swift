@@ -12,7 +12,7 @@ class code13UITests: XCTestCase {
     
     let app = XCUIApplication()
     
-    
+    //test
     func cellContainingInteger( value: Int) -> XCUIElement
     {
         return app.cells.containingPredicate(NSPredicate(format: "label == 'cell \(value)'")).element
