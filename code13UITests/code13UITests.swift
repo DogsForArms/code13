@@ -52,6 +52,9 @@ class code13UITests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
     
         firstCell.tap() //should fail! code13 (if it doesn't fail, incrase setNumberOfThingsToAdd value
+        
+        //keep going until you find the problem...  yes this is an infinite loop
+        testRandomAddBroken()
     }
     
     func testRandomAddFixed()
