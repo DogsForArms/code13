@@ -51,13 +51,20 @@ class code13UITests: XCTestCase {
         }), evaluatedWithObject: firstCell, handler: nil)
         waitForExpectationsWithTimeout(10, handler: nil)
     
-        firstCell.tap() //should fail! code13 (if it doesn't fail, incrase setNumberOfThingsToAdd value
+        SafeTap.tapWhile(firstCell)
+        
+//        firstCell.tap() //should fail! code13 (if it doesn't fail, incrase setNumberOfThingsToAdd value
         let alertAlright = app.buttons["Alright"]
         alertAlright.waitForExistence()
         alertAlright.tap()
         
         //keep going until you find the problem...  yes this is an infinite loop
         testRandomAddBroken()
+        
+//        expectationForPredicate(NSPredicate(block: { (_, _) -> Bool in
+//            return false
+//        }), evaluatedWithObject: self, handler: nil)
+//        waitForExpectationsWithTimeout(50, handler: nil)
     }
     
     func testRandomAddFixed()

@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     var data = [Int]()
-    let numberOfCellsToGenerate = 30
+    let numberOfCellsToGenerate = 80
 
     
     override func viewDidLoad() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B49AE031C2B06900083138B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B49AE021C2B068F0083138B /* Helpers.swift */; };
+		6BFBFD011C2C455C00BBAF16 /* SafeTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBFD001C2C455C00BBAF16 /* SafeTap.m */; };
 		AAA03A381C2A2AC2005DD3CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA03A371C2A2AC2005DD3CE /* AppDelegate.swift */; };
 		AAA03A3A1C2A2AC2005DD3CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA03A391C2A2AC2005DD3CE /* ViewController.swift */; };
 		AAA03A3D1C2A2AC2005DD3CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA03A3B1C2A2AC2005DD3CE /* Main.storyboard */; };
@@ -37,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		6B49AE021C2B068F0083138B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		6BFBFCFE1C2C455C00BBAF16 /* code13UITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "code13UITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		6BFBFCFF1C2C455C00BBAF16 /* SafeTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SafeTap.h; path = ../SafeTap.h; sourceTree = "<group>"; };
+		6BFBFD001C2C455C00BBAF16 /* SafeTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SafeTap.m; path = ../SafeTap.m; sourceTree = "<group>"; };
 		AAA03A341C2A2AC2005DD3CE /* code13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = code13.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA03A371C2A2AC2005DD3CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAA03A391C2A2AC2005DD3CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 				AAA03A4B1C2A2AC2005DD3CE /* code13Tests */,
 				AAA03A561C2A2AC2005DD3CE /* code13UITests */,
 				AAA03A351C2A2AC2005DD3CE /* Products */,
+				6BFBFCFE1C2C455C00BBAF16 /* code13UITests-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +129,8 @@
 		AAA03A561C2A2AC2005DD3CE /* code13UITests */ = {
 			isa = PBXGroup;
 			children = (
+				6BFBFCFF1C2C455C00BBAF16 /* SafeTap.h */,
+				6BFBFD001C2C455C00BBAF16 /* SafeTap.m */,
 				AAA03A571C2A2AC2005DD3CE /* code13UITests.swift */,
 				6B49AE021C2B068F0083138B /* Helpers.swift */,
 				AAA03A591C2A2AC2005DD3CE /* Info.plist */,
@@ -281,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAA03A581C2A2AC2005DD3CE /* code13UITests.swift in Sources */,
+				6BFBFD011C2C455C00BBAF16 /* SafeTap.m in Sources */,
 				6B49AE031C2B06900083138B /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,10 +458,13 @@
 		AAA03A631C2A2AC2005DD3CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = code13UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtnlab.code13UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "code13UITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = code13;
 				USES_XCTRUNNER = YES;
 			};
@@ -462,10 +473,12 @@
 		AAA03A641C2A2AC2005DD3CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = code13UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mtnlab.code13UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "code13UITests-Bridging-Header.h";
 				TEST_TARGET_NAME = code13;
 				USES_XCTRUNNER = YES;
 			};
