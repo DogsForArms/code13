@@ -52,6 +52,9 @@ class code13UITests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
     
         firstCell.tap() //should fail! code13 (if it doesn't fail, incrase setNumberOfThingsToAdd value
+        let alertAlright = app.buttons["Alright"]
+        alertAlright.waitForExistence()
+        alertAlright.tap()
         
         //keep going until you find the problem...  yes this is an infinite loop
         testRandomAddBroken()
@@ -72,10 +75,11 @@ class code13UITests: XCTestCase {
         waitForAppToSettle(7) //7 is a generous amount of time to wait.
         
         firstCell.tap() //works!
-        
         let alertAlright = app.buttons["Alright"]
         alertAlright.waitForExistence()
         alertAlright.tap()
+        
+        testRandomAddBroken()
     }
     
 //    func removeOneAtATimeSometimesFails() {
