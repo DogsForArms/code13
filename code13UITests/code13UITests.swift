@@ -10,8 +10,6 @@ import XCTest
 
 class code13UITests: XCTestCase {
     
-    
-    
     let app = XCUIApplication()
     
     func cellContainingInteger( value: Int) -> XCUIElement
@@ -23,16 +21,20 @@ class code13UITests: XCTestCase {
         return app.cells.elementBoundByIndex( UInt(index) )
     }
     
+    
+    
     override func setUp() {
         super.setUp()
         
         continueAfterFailure = false
         app.launch()
         
-    
+        
+
     }
     
-    override func tearDown() {
+    override func tearDown()
+    {
         app.terminate()
         super.tearDown()
     }
@@ -49,8 +51,7 @@ class code13UITests: XCTestCase {
         }), evaluatedWithObject: firstCell, handler: nil)
         waitForExpectationsWithTimeout(10, handler: nil)
     
-        firstCell.tap() //should fail! code13
-        
+        firstCell.tap() //should fail! code13 (if it doesn't fail, incrase setNumberOfThingsToAdd value
     }
     
     func testRandomAddFixed()
@@ -68,22 +69,26 @@ class code13UITests: XCTestCase {
         waitForAppToSettle(7) //7 is a generous amount of time to wait.
         
         firstCell.tap() //works!
+        
+        let alertAlright = app.buttons["Alright"]
+        alertAlright.waitForExistence()
+        alertAlright.tap()
     }
     
-    func testExample() {
-        
-        let max = Int(app.cells.count - 1)
-        (1..<max).forEach({
-            print($0)
-            let cell = cellContainingInteger($0)
-            cell.buttons["cellDeleteButton"].tap()
-            
-            expectationForPredicate(NSPredicate(block: { (observed, _:[String : AnyObject]?) -> Bool in
-                return !(observed as! XCUIElement).exists
-            }), evaluatedWithObject: cell, handler: nil)
-            waitForExpectationsWithTimeout(10, handler: nil)
-            
-        })
-    }
+//    func removeOneAtATimeSometimesFails() {
+//        
+//        let max = Int(app.cells.count - 1)
+//        (1..<max).forEach({
+//            print($0)
+//            let cell = cellContainingInteger($0)
+//            cell.buttons["cellDeleteButton"].tap()
+//            
+//            expectationForPredicate(NSPredicate(block: { (observed, _:[String : AnyObject]?) -> Bool in
+//                return !(observed as! XCUIElement).exists
+//            }), evaluatedWithObject: cell, handler: nil)
+//            waitForExpectationsWithTimeout(10, handler: nil)
+//            
+//        })
+//    }
     
 }

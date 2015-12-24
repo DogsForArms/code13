@@ -8,20 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var addThingsButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
     
     var data = [Int]()
+    let numberOfCellsToGenerate = 30
+
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.dataSource = self
         tableView.delegate = self
-        (1..<500).forEach { (value) -> () in
-            data.append(value)
-        }
+//        (1..<500).forEach { (value) -> () in
+//            data.append(value)
+//        }
         tableView.reloadData()
         
     }
@@ -69,16 +74,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         UIAlertView(title: "Yay!", message: "You succeeded in tapping cell \(indexPath.row).  Good job.", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "Alright").show()
     }
     
+    
+    
     @IBAction func addThingsAction(sender: AnyObject) {
         data.removeAll()
         tableView.reloadData()
         
-        (1..<80).forEach { (value) -> () in
-            let startRandom = Double.random(1, 3)
-            let endRandom = startRandom + Double.random(0, 2)
+        
+        
+        (1...numberOfCellsToGenerate).forEach { (value) -> () in
             
-            let randomSleep = Double.random(startRandom, endRandom)
             
+            let randomSleep = Double.random(0, 6)
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     NSThread.sleepForTimeInterval(randomSleep)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in

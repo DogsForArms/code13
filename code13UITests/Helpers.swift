@@ -75,6 +75,51 @@ public func waitToSettle<T: Equatable>(   getSettledValue:() -> T,
     settleLoop()
 }
 
+public func waitForCondition( condition: (() -> Bool),
+    onFailMessage message: String? = nil,
+    waitForExpectationsWithTimeout timeout: NSTimeInterval = 10,
+    continueAfterFailure: Bool = false ) -> Bool
+{
+    let startTime = NSDate().timeIntervalSince1970
+    let sleepInterval = 0.2
+    var success = false
+    
+    func checkCondition()
+    {
+        let currentTime = NSDate().timeIntervalSince1970
+        
+        if currentTime - startTime > timeout
+        {
+            print("❌ after \(timeout) seconds")
+            if continueAfterFailure
+            {
+                success = false
+            }
+            else
+            {
+                XCTFail((message != nil) ?  message! :
+                    "Expectation couldn't be fulfilled for condition: \(condition)")
+            }
+        }
+        else
+            if condition()
+            {
+                print("✅")
+                success = true
+            }
+            else
+            {
+                print("😴")
+                NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: sleepInterval))
+                checkCondition()
+        }
+    }
+    checkCondition()
+    
+    return success
+}
+
+
 func wait(duration: Double)
 {
     NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: duration))
@@ -111,5 +156,10 @@ extension XCUIElement
             withTemplate: "👉")
         
         return removedMemoryAddresses
+    }
+    
+    func waitForExistence(onFailMessage: String = "Element does not exist. \(debugDescription)", waitFor timeout: NSTimeInterval = 15)
+    {
+        waitForCondition({self.exists}, onFailMessage: onFailMessage, waitForExpectationsWithTimeout: timeout)
     }
 }
