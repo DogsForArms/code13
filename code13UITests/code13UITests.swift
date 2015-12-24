@@ -79,7 +79,7 @@ class code13UITests: XCTestCase {
         alertAlright.waitForExistence()
         alertAlright.tap()
         
-        testRandomAddBroken()
+        testRandomAddFixed()
     }
     
 //    func removeOneAtATimeSometimesFails() {
